@@ -1,7 +1,7 @@
 # Machine-Learning-with-AWS
 
 The present project consists of several computer vision algorithms on AWS. Specifically, I work with the popular Oxford IIIT Pet Dataset and and use Amazon SageMaker to create, train and deploy the following models:
-1. A Image classifier with Amazon SageMaker
+1. An Image classifier with Amazon SageMaker.
 
 2. An image classifier with TensorFlow within SageMaker ecosystem.
 
@@ -11,16 +11,35 @@ The present project consists of several computer vision algorithms on AWS. Speci
 
 More detail on each algorithm is discussed below.
 
-# 1.. Classification with AWS SageMaker. [Code](https://github.com/FarruhShahidi/Machine-Learning-with-AWS/blob/master/sage-classification.ipynb)
+# 1. Classification with AWS SageMaker. [Notebook](https://github.com/FarruhShahidi/Machine-Learning-with-AWS/blob/master/sage-classification.ipynb)
 
 This part I classify classify 37 breeds of dogs and cats from the dataset mentioned above. Here are some images
-![](p1-breeds.png "Different breeds")
+![](images/p1-breeds.png "Different breeds")
 
-The model useS a pre-trained [ResNet-50](https://keras.io/api/applications/resnet/#resnet50-function)
+The model uses a pre-trained [ResNet-50](https://keras.io/api/applications/resnet/#resnet50-function) to train. Here is the prediction example:
+
+![](images/p1-pred.png "Breed Prediction")
+
+# 2. Semantic Segmentation.
+This part uses the semantic segmentation algorithm from Sagemaker to create, train and deploy a model  segments images of dogs and cats f into 3 unique pixel values. That is, each pixel of an input image would be classified as either foreground (pet), background (not a pet), or unclassified (transition between foreground and background). Along with the dataset we also use the trimap segmentation images for training
+
+![](images/p2-train.png "Trimap Segmentation")
+
+The SageMaker semantic segmentation algorithm provides you with a choice of three build-in algorithms to train a deep neural network. You can use the Fully-Convolutional Network (FCN) algorithm , Pyramid Scene Parsing (PSP) algorithm, or DeepLabV3. I use the former algorithm which you can read about it [here](https://arxiv.org/pdf/1605.06211.pdf).  Here is the architecture in a picture.
+
+![](images/p2-algorithm.png "FCN architecture")
+
+By training and deploying the dataset using the above algorithm I got the prediction as follows
+
+![](images/p2-pred.png "SS prediction")
 
 
-# 2. TensorFlow with Amazon Sagemaker. 
-NEEDS TO BE CHANGED
-In this part,   train and deploy an image classifier created and trained with the TensorFlow framework within the Amazon Sagemaker ecosystem. Sagemaker provides a number of machine learning algorithms ready to be used for solving a number of tasks. However, it is possible to use Sagemaker for custom training scripts as well. I will use TensorFlow and Sagemaker's TensorFlow Estimator to create, train and deploy a model that will be able to classify images of dogs and cats from the popular Oxford IIIT Pet Dataset.
+
+# 3. Object Detection.
+
+
+# 4. TensorFlow with Amazon Sagemaker. 
+
+In this part,  I  train and deploy an image classifier created and trained with the TensorFlow framework within the Amazon Sagemaker ecosystem. Sagemaker provides a number of machine learning algorithms ready to be used for solving a number of tasks. However, it is possible to use Sagemaker for custom training scripts as well. I will use TensorFlow and Sagemaker's TensorFlow Estimator to create, train and deploy a model that will be able to classify images of dogs and cats.
 
 The classification uses mobilenetV2 architechture developed by Google. For more info about mobilenet click on [this](<https://towardsdatascience.com/review-mobilenetv2-light-weight-model-image-classification-8febb490e61c>). To read the paper click on [this](<https://arxiv.org/abs/1801.04381>).
